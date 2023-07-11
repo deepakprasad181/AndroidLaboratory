@@ -54,7 +54,8 @@ XML
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.245" />
+        app:layout_constraintVertical_bias="0.245"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/button1"
@@ -265,7 +266,7 @@ XML
 JAVA
 -----------------------------------------------------------------------
 
-package com.example.calculator;
+package com.example.calculatorfinal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -342,6 +343,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         eq=(Button)findViewById(R.id.eq);
         eq.setOnClickListener(this);
 
+        result = findViewById(R.id.result);
     }
 
     @Override
@@ -379,12 +381,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             result.append("*");
         if(v.equals(btndiv))
             result.append("/");
+        if (v.equals(btnclr))
+            result.setText("");
 
         if (v.equals(eq)) {
             try {
                 String data = result.getText().toString();
                 if (data.contains("*")) {
-
                     String[] operands = data.split(Pattern.quote("*"));
                     if (operands.length == 2) {
                         double operand1 = Double.parseDouble(operands[0]);
@@ -392,36 +395,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         double res = operand1 * operand2;
                         result.setText(String.valueOf(res));
                     }
-                } else {
-                    Toast.makeText(getBaseContext(), "invalid input", Toast.LENGTH_SHORT).show();
-                }
-                if (data.contains("/")) {
-
-                    String[] operands = data.split(Pattern.quote("*"));
+                } else if (data.contains("/")) {
+                    String[] operands = data.split(Pattern.quote("/"));
                     if (operands.length == 2) {
                         double operand1 = Double.parseDouble(operands[0]);
                         double operand2 = Double.parseDouble(operands[1]);
                         double res = operand1 / operand2;
                         result.setText(String.valueOf(res));
                     }
-                } else {
-                    Toast.makeText(getBaseContext(), "invalid input", Toast.LENGTH_SHORT).show();
-                }
-                if (data.contains("+")) {
-
-                    String[] operands = data.split(Pattern.quote("*"));
+                } else if (data.contains("+")) {
+                    String[] operands = data.split(Pattern.quote("+"));
                     if (operands.length == 2) {
                         double operand1 = Double.parseDouble(operands[0]);
                         double operand2 = Double.parseDouble(operands[1]);
                         double res = operand1 + operand2;
                         result.setText(String.valueOf(res));
                     }
-                } else {
-                    Toast.makeText(getBaseContext(), "invalid input", Toast.LENGTH_SHORT).show();
-                }
-                if (data.contains("-")) {
-
-                    String[] operands = data.split(Pattern.quote("*"));
+                } else if (data.contains("-")) {
+                    String[] operands = data.split(Pattern.quote("-"));
                     if (operands.length == 2) {
                         double operand1 = Double.parseDouble(operands[0]);
                         double operand2 = Double.parseDouble(operands[1]);
@@ -429,7 +420,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         result.setText(String.valueOf(res));
                     }
                 } else {
-                    Toast.makeText(getBaseContext(), "invalid input", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Invalid input", Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception E) {
                 Toast.makeText(getBaseContext(), "invalid input", Toast.LENGTH_SHORT).show();
