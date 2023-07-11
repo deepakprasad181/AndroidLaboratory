@@ -37,15 +37,15 @@ XML Code
         android:layout_marginTop="348dp"
         android:layout_marginEnd="110dp"
         android:layout_marginBottom="337dp"
-        android:text="Click" />
+        android:text="Click"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </RelativeLayout>
-
 -----------------------------------------------------------------------
 Java Code
 -----------------------------------------------------------------------
 
-package com.example.wallpaper;
+package com.example.wallpapermanager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -68,10 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             R.drawable.img2,
             R.drawable.img3,
             R.drawable.img4,
-            R.drawable.img5,
-            R.drawable.img6,
-            R.drawable.img7,
-            R.drawable.img8,
+
 
     };
 
