@@ -44,36 +44,26 @@ XML Code
 -----------------------------------------------------------------------
 Java Code
 -----------------------------------------------------------------------
-
 package com.example.wallpapermanager;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.WallpaperManager;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
     Button btnChangeWallpaper;
     boolean running;
     int[] imagesArray=new int[] {
-
             R.drawable.img1,
             R.drawable.img2,
             R.drawable.img3,
             R.drawable.img4,
-
-
     };
-
     int i = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
