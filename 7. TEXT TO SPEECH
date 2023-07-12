@@ -76,9 +76,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 setContentView(R.layout.activity_main);
                 txtSpeak=(EditText)findViewById(R.id.editText);
                 btnSpeak=(Button)findViewById(R.id.btn_speak);
-                btnSpeak.setOnClickListener(this);textToSpeech=new
-                TextToSpeech(getBaseContext(), new
-                TextToSpeech.OnInitListener() {
+                btnSpeak.setOnClickListener(this);
+                textToSpeech=new TextToSpeech(getBaseContext(),newTextToSpeech.OnInitListener() {
         @Override
                 public void onInit(int status) {
                         if(status!=TextToSpeech.ERROR)
