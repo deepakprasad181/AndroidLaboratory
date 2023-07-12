@@ -303,23 +303,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             contactIntent.putExtra(ContactsContract.Intents.Insert.PHONE, txtPhonenumber.getText().toString());
             startActivity(contactIntent);
         }
-        else if(v.equals(btnDel)) {
-            String data = txtPhonenumber.getText().toString();
-            if (data.length() > 0) {
-                txtPhonenumber.setText(data.substring(0, data.length() - 1));
-            } else {
-                txtPhonenumber.setText("");
-            }
-        }
         btnCall.setOnClickListener(new View.OnClickListener()
                                    {
                                        @Override
                                        public void onClick(View v) {
                                                String data = txtPhonenumber.getText().toString(); Intent
                                                        intent=new Intent(Intent.ACTION_DIAL);
-                                               intent.setData(Uri.parse("tel:"+ data)); startActivity(intent);
+                                                       startActivity(intent);
                                            }
-                                   }
+                                   }        
         );
     }
 }
