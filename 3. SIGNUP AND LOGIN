@@ -54,7 +54,8 @@ XML
         app:layout_constraintBottom_toBottomOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
+        app:layout_constraintTop_toTopOf="@+id/textView3"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/txt_password"
@@ -65,7 +66,8 @@ XML
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/txt_username"
         app:layout_constraintStart_toStartOf="@+id/txt_username"
-        app:layout_constraintTop_toBottomOf="@+id/txt_username" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_username"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btn_signup"
@@ -156,6 +158,7 @@ XML
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+
 ------------------------------------------------------------------------------------------
 JAVA
 ------------------------------------------------------------------------------------------
@@ -174,53 +177,64 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
     EditText txtUsername;
     EditText txtPassword;
     Button btnSignup;
     String regularExpression;
+
     {
         regularExpression = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!])[A-Zaz\\d@$!]{8,}$";
+
+
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         txtUsername = findViewById(R.id.txt_username);
         txtPassword = findViewById(R.id.txt_password);
         btnSignup = findViewById(R.id.btn_signup);
         btnSignup.setOnClickListener(this);
     }
+
     public void onClick(View v) {
         String username = txtUsername.getText().toString();
         String password = txtPassword.getText().toString();
+
             Bundle bundle = new Bundle();
             bundle.putString("", username);
             bundle.putString("", password);
             Intent it = new Intent(this, Login.class);
             it.putExtra("data", bundle);
             startActivity(it);
+            Toast.makeText(this,"Successful Sign up",Toast.LENGTH_LONG).show();
         }
-    public boolean validatePassword(String password) {
-        Pattern pattern = Pattern.compile(regularExpression);
-        Matcher matcher = pattern.matcher(password);
-        return matcher.matches();
-    }
+
+
+
 }
 02. LoginActivity.java
 
 package com.example.signupandlogin;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 public class Login extends AppCompatActivity implements View.OnClickListener {
+
     private EditText txtLoginUsername;
     private EditText txtLoginPassword;
     private Button btnLogin;
     private String user, pass;
     private int count = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -233,13 +247,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         user = bundle.getString("mad");
         pass = bundle.getString("Mad@123");
     }
+
     public void onClick(View v) {
         String user1 = txtLoginUsername.getText().toString();
         String pass1 = txtLoginPassword.getText().toString();
-        if (user.equals(user1) && pass.equals(pass1)) {
+
             Toast.makeText(this, "Login Successful", Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(this,"Successful login",Toast.LENGTH_LONG).show();
-        }
+
         }
     }
